@@ -1,100 +1,66 @@
-<form class="feedback-form" method="post" name="{% feedbackFormName %}" data-netlify="true">
-  <h2 class="feedback-form__title">Оцените статью</h2>
+<form class="feedback-form" method="post" name="feedback-form" data-state="idle" autocomplete="off">
+  <div class="feedback-form__header font-theme font-theme--code">
+    <div class="feedback-form__title" data-state="idle">Оцените статью</div>
+    <div class="feedback-form__title" data-state="success">Спасибо</div>
+  </div>
 
-  <fieldset>
+  <fieldset class="feedback-form__fieldset feedback-form__fieldset--vote">
     <div class="vote font-theme font-theme--code">
-      <label class="vote__label">
+      <label class="vote__label vote__label--up">
         <span class="visually-hidden">Понравилось</span>
-        <input class="vote__input" type="radio" name="isUseful" value="1">
-        <span class="vote__control vote__control--up" aria-hidden="true">
-          ^‿^
-        </span>
+        <input class="vote__input" type="radio" name="is-useful" value="1">
+        <span class="vote__control" aria-hidden="true">^‿^</span>
       </label>
-      <label class="vote__label">
+      <label class="vote__label vote__label--down">
         <span class="visually-hidden">Не понравилось</span>
-        <input class="vote__input" type="radio" name="isUseful" value="0">
-        <span class="vote__control vote__control--down" aria-hidden="true">
-          ˇ⌒ˇ
-        </span>
+        <input class="vote__input" type="radio" name="is-useful" value="0">
+        <span class="vote__control" aria-hidden="true">ˇ⌒ˇ</span>
       </label>
   </fieldset>
 
-  <fieldset>
-    <legend>Что не понравилось?</legend>
-    <ul>
-      <li>
-        <label>
-          <input type="radio" name="reason" value="Сложно">
-          <span>Сложно</span>
+  <fieldset class="feedback-form__fieldset feedback-form__fieldset--reason" hidden>
+    <legend class="feedback-form__legend">Что не понравилось?</legend>
+    <ul class="feedback-control-list base-list">
+      <li class="feedback-control-list__item">
+        <label class="control">
+          <input class="control__input" type="radio" name="reason" value="Сложно">
+          <span class="control__label">Сложно</span>
         </label>
       </li>
-      <li>
-        <label>
-          <input type="radio" name="reason" value="Давно не обновлялась">
-          <span>Давно не обновлялась</span>
+      <li class="feedback-control-list__item">
+        <label class="control">
+          <input class="control__input" type="radio" name="reason" value="Давно не обновлялась">
+          <span class="control__label">Давно не обновлялась</span>
         </label>
       </li>
-      <li>
-        <label>
-          <input type="radio" name="reason" value="Неполная информация">
-          <span>Неполная информация</span>
+      <li class="feedback-control-list__item">
+        <label class="control">
+          <input class="control__input" type="radio" name="reason" value="Неполная информация">
+          <span class="control__label">Неполная информация</span>
         </label>
       </li>
-      <li>
-        <label>
-          <input type="radio" name="reason" value="Мало примеров">
-          <span>Мало примеров</span>
+      <li class="feedback-control-list__item">
+        <label class="control">
+          <input class="control__input" type="radio" name="reason" value="Мало примеров">
+          <span class="control__label">Мало примеров</span>
         </label>
       </li>
-      <li>
-        <label>
-          <input type="radio" name="reason" value="other">
-          <span>Другое</span>
+      <li class="feedback-control-list__item">
+        <label class="control">
+          <input class="control__input" type="radio" name="reason" value="other">
+          <span class="control__label">Другое</span>
         </label>
       </li>
     </ul>
-    <div>
-      <textarea name="comment"></textarea>
-      <button type="submit">Отправить</button>
+    <div class="feedback-form__text" hidden>
+      <div class="text-control">
+        <textarea class="text-control__input" name="comment" placeholder="Расскажите подробнее"></textarea>
+        <button class="text-control__button button button--invert" type="submit">Отправить</button>
+      </div>
     </div>
   </fieldset>
-  </div>
 
-  <p>Ошибки отправляйте в <a class="link" href="{% contentRepLink %}">pull-request на GitHub</a></p>
-</div>
-
-
-<div>
-  <h2>Обратная связь</h2>
-  <form method="post" name="{% feedbackFormName %}" data-netlify="true">
-    <input type="hidden" name="article" value="{{ title }}">
-    <fieldset>
-      <legend>
-        Статья была полезной?
-      </legend>
-      <input id="feedack-useful" type="radio" name="isUseful" value="1">
-      <label for="feedack-useful">
-        👍
-      </label>
-      <input id="feedack-not-useful" type="radio" name="isUseful" value="0">
-      <label for="feedack-not-useful">
-        👎
-      </label>
-    </fieldset>
-    <label for="feedack-comment">
-      Чего вы ожидали увидеть в статье, но не нашли?
-    </label>
-    <textarea name="comment" id="feedack-comment" rows="5"></textarea>
-    <button type="submit">Отправить</button>
-  </form>
-  <p>
-    ✅ Спасибо за ваше мнение!
-  </p>
-  <p>
-    🛑 Что-то пошло не так и данные не отправились.
-    Нам очень важно знать ваше мнение, пришлите его на почту <a href="mailto:hi@doka.guide">hi@doka.guide</a>
-  </p>
-  <p>
-    🛑 Кажется, вы запустили Доку на локальном сервере. Форма работать не будет, но нам очень важно знать ваше мнение, пришлите его на почту <a href="mailto:hi@doka.guide">hi@doka.guide</a>
+  <p class="feedback-form__description">
+    Ошибки отправляйте в <a class="link" href="{% contentRepLink %}">pull-request на GitHub</a>
   </p>
 </form>
