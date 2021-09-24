@@ -1,0 +1,30 @@
+.text-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.text-control__input {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  border: 0;
+  padding: calc(4 / 15 * 1em) 0 calc(3 / 15 * 1em);
+  min-height: calc(32 / 15 * 1em);
+  height: calc(32 / 15 * 1em);
+  border-bottom: 1px solid;
+  font: inherit;
+  background-color: transparent;
+  resize: vertical;
+}
+
+.text-control__input::placeholder {
+  opacity: 0.55;
+  padding: inherit;
+  font: inherit;
+  color: inherit;
+}
+
+.text-control__button {
+  flex: 0 0 auto;
+  padding: calc(5 / 15 * 1em) calc(19 / 15 * 1em);
+}
